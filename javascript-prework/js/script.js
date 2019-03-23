@@ -1,3 +1,13 @@
+
+
+var argButtonName, ButtonPaper, ButtonRock, ButtonScissors, buttonTest;
+
+/**
+ * Describe this function...
+ */
+function buttonClicked(argButtonName) {
+  clearMessages();
+  console.log(argButtonName + ' został kliknięty');
 var argComputerMove, argMoveId, argPlayerMove, computerMove, playerInput, playerMove, randomNumber;
 
 /**
@@ -35,12 +45,19 @@ function displayResult(argPlayerMove, argComputerMove) {
   }
   printMessage('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
 }
-playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-console.log('wybór ruchu gracza to: ' + playerInput);
-playerMove = getMoveName(playerInput);
+playerMove = buttonName;
 console.log('ruch gracza to: ' + playerMove);
 randomNumber = Math.floor(Math.random() * 3 + 1);
 console.log('wylosowana liczba to: ' + randomNumber);
 computerMove = getMoveName(randomNumber);
 console.log('ruch komputera to: ' + computerMove);
 displayResult(playerMove, computerMove);
+}
+buttonTest = document.getElementById('button-test');
+buttonTest.addEventListener('click', function(){ buttonClicked('Guzik TEST'); });
+ButtonRock = document.getElementById('button-rock');
+ButtonRock.addEventListener('click', function(){ buttonClicked('kamień'); });
+ButtonPaper = document.getElementById('button-paper');
+ButtonPaper.addEventListener('click', function(){ buttonClicked('papier'); });
+ButtonScissors = document.getElementById('button-scissors');
+ButtonScissors.addEventListener('click', function(){ buttonClicked('nożyce'); });
