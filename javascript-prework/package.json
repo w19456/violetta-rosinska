@@ -18,8 +18,9 @@
     "watch": "npm-run-all build:* build-dev -p watch:*",
     "watch:browsersync": "browser-sync start --server --files \"css/*.css\" \"*.html\"",
     "watch:sassprefixer": "onchange src/sass/*.scss -- npm run build-dev",
-    "watch:indexcopy": "onchange src/index.html -- cp src/index.html index.html"
-  },
+    "watch:indexcopy": "onchange src/index.html -- cp src/index.html index.html",
+    "watch:jscopy": "onchange src/js/*.js -- cp src/js/*.js js/"
+      },
   "keywords": [],
   "author": "",
   "license": "ISC",
