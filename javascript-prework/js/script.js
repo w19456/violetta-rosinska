@@ -1,14 +1,3 @@
-Blocks
-JavaScript
-Fullscreen
-MESSAGES
-TEXT
-VARIABLES
-MATH
-LOGIC
-INPUT
-FUNCTIONS
-MISC
 var argComputerMove, argMoveId, argPlayerMove, computerMove, playerInput, playerMove, randomNumber;
 
 /**
