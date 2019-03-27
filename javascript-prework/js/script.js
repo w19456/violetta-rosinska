@@ -1,9 +1,9 @@
 
 
-var argButtonName, ButtonPaper, ButtonRock, ButtonScissors;
+let argButtonName, ButtonPaper, ButtonRock, ButtonScissors;
 
-var won=0;
-var lost=0;
+let won=0;
+let lost=0;
 
 /**
  * Describe this function...
@@ -11,7 +11,7 @@ var lost=0;
 function buttonClicked(argButtonName) {
     clearMessages();
     console.log(argButtonName + ' został kliknięty');
-    var argComputerMove, argMoveId, argPlayerMove, computerMove, playerInput, playerMove, randomNumber;
+    let computerMove, playerMove, randomNumber;
 
     /**
      * Describe this function...
