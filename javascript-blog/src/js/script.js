@@ -45,10 +45,9 @@ function generateTitleLinks() {
   titleList.innerHTML = '';
   console.log(titleList)
   /* for each article */
-  const articles = document.querySelectorAll(optArticleSelector);
-  console.log(articles);
   let myInnerHtml = '';
-  for (let article of articles) {
+
+  document.querySelectorAll(optArticleSelector).forEach(function (article) {
     article.classList.remove('active');
 
     /* get the article id */
@@ -62,12 +61,12 @@ function generateTitleLinks() {
     console.log(linkHTML);
     /* insert link into titleList */
     myInnerHtml = myInnerHtml + linkHTML;
-  }
-  titleList.innerHTML = myInnerHtml;
-  const links = document.querySelectorAll('.titles a');
+  })
 
-  for (let link of links) {
+  titleList.innerHTML = myInnerHtml;
+
+  document.querySelectorAll('.titles a').forEach(function (link) {
     link.addEventListener('click', titleClickHandler);
-  }
+  });
 }
 generateTitleLinks();
