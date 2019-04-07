@@ -8,8 +8,9 @@
     "init:dirs": "mkdirp css vendor src/img src/sass js",
     "init:files": "touch README.md src/index.html src/sass/style.scss js/script.js",
     "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -o .gitignore",
-    "test": "npm run test:html",
+    "test": "npm run test:*",
     "test:html": "globstar nu-html-checker *.html",
+    "test:js": "eslint js/",
     "build": "npm-run-all build:* test",
     "build:sass": "node-sass --output-style compact -o css src/sass/style.scss",
     "build:autoprefixer": "autoprefixer-cli css/style.css",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "autoprefixer-cli": "1.0.0",
     "browser-sync": "2.26.3",
+    "eslint": "^5.16.0",
     "globstar": "1.0.0",
     "mkdirp": "0.5.1",
     "node-sass": "4.11.0",
