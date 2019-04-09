@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext");
 /* Variables */
 /* Global */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -49,7 +51,8 @@ body {
       flex: 2 0 0;
 }
 
-.sidebar, .posts {
+.sidebar,
+.posts {
   background: #fff;
   margin-right: 10px;
   padding: 40px;
@@ -106,5 +109,21 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+.max, .max a {
+  font-weight: bold;
+  font-size: 24px;
+  color: green;
+}
+
+.min, .min a {
+  font-style: italic;
+  color: red;
+}
+
+.aver, .aver a {
+  font-size: 20px;
+  color: black;
 }
 /*# sourceMappingURL=style.css.map */

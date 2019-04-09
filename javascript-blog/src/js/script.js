@@ -63,14 +63,34 @@ function generateTags() {
       } else {
         allTags[tag]++;
       }
-    });
+
+    }
+    );
+
     tagsWrapper.innerHTML = html;
   });
   const tagList = document.querySelector('.tags');
   let allTagsHTML = '';
+
+  const quantityArray = [];
   for (let tag in allTags) {
-    allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + '</a>(' + allTags[tag] + ')</li>';
+    quantityArray.push(allTags[tag]);
   }
+
+
+  for (let tag in allTags) {
+    let className = ' ';
+    if (allTags[tag] == Math.max(...quantityArray)) {
+      className = 'max';
+    } else if (allTags[tag] == Math.min(...quantityArray)) {
+      className = 'min';
+    }
+    else {
+      className = 'aver';
+    }
+    allTagsHTML += '<li class="' + className + '" ><a href="#tag-' + tag + '">' + tag + '</a>(' + allTags[tag] + ')</li>';
+  }
+
   tagList.innerHTML = allTagsHTML;
 }
 generateTags();
@@ -91,7 +111,6 @@ function generateAuthors() {
   const authorsSet = new Set();
   document.querySelectorAll(optArticleSelector).forEach(function (article) {
     const articleAuthor = article.getAttribute('data-author');
-    console.log(articleAuthor);
     const authorElement = article.querySelector(optArticleAuthorSelector);
     authorsSet.add(articleAuthor);
     authorElement.innerHTML = '<a href="#">' + articleAuthor + '</a>';
