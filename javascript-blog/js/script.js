@@ -67,7 +67,6 @@ function generateTags() {
     tagsWrapper.innerHTML = html;
   });
   const tagList = document.querySelector('.tags');
-  console.log(allTags);
   let allTagsHTML = '';
   for (let tag in allTags) {
     allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + '</a>(' + allTags[tag] + ')</li>';
