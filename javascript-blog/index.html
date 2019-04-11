@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Blog</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
 </head>
 
 <body>
@@ -15,16 +16,6 @@
         <aside class="sidebar">
           <h2 class="section-title">All posts</h2>
           <ul class="list titles">
-            <li><a href="#article-1" class="active"><span>Article 1</span></a></li>
-            <li><a href="#article-2"><span>Article 2</span></a></li>
-            <li><a href="#article-3"><span>Article 3</span></a></li>
-            <li><a href="#article-4"><span>Article 4</span></a></li>
-            <li><a href="#article-5"><span>Article 5</span></a></li>
-            <li><a href="#article-6"><span>Article 6</span></a></li>
-            <li><a href="#article-7"><span>Article 7</span></a></li>
-            <li><a href="#article-8"><span>Article 8</span></a></li>
-            <li><a href="#article-9"><span>Article 9</span></a></li>
-            <li><a href="#article-10"><span>Article 10</span></a></li>
           </ul>
         </aside>
         <section class="posts">
@@ -243,31 +234,29 @@
           </ul>
           <h2 class="section-title">Authors</h2>
           <ul class="list authors">
-            <li>
-              <a href="#">
-                <span class="author-name">Kitty Toebean</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="author-name">Theo Tabby</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="author-name">George Tuxedo</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="author-name">Marion Berry</span>
-              </a>
-            </li>
           </ul>
         </aside>
       </main>
     </div>
   </div>
+  <script id="template-articleLinks" type="text/x-handlebars-template">
+              <li><a href="#{{articleIdTemp}}"><span>{{articleTitleTemp}}</span></a></li>
+              </script>
+  <script id="template-articleTags" type="text/x-handlebars-template">
+    <li><a href="#tag-{{tagIdTemp}}">{{tagIdTemp}}</a></li>
+  </script>
+  <script id="template-tagColumn" type="text/x-handlebars-template">
+  <!-- <li class="' + className + '"><a href="#tag-' + tag + '">' + tag + '</a>(' + allTags[tag] + ')</li> -->
+  <li class="{{tagColumnClass}}"><a href="#tag-{{tagIdTemp}}">{{tagIdTemp}}</a>({{tagsColumn}})</li>
+  </script>
+  <script id="template-authorColumn" type="text/x-handlebars-template">
+      <!-- '<li><a href="#">' + author + '</a>(' + elementCount + ')</li>'; -->
+      <li><a href="#">{{authorTemp}}</a>({{authorsColumn}})</li>
+      </script>
+  <script id="template-articleAuthor" type="text/x-handlebars-template">
+      <!-- '<a href="#">' + articleAuthor + '</a>'; -->
+      <a href="#">{{author}}</a>
+  </script>
   <script src="js/functions.js"></script>
   <script src="js/script.js"></script>
 </body>
