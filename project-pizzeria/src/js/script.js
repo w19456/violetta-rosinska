@@ -58,8 +58,10 @@ class Product {
     thisProduct.id = id;
     thisProduct.data = data;
     thisProduct.renderInMenu();
-    console.log('new Product:', thisProduct);
+    thisProduct.getElements();
     thisProduct.initAccordion();
+    thisProduct.initOrderForm();
+    thisProduct.processOrder();
   }
   renderInMenu() {
     const thisProduct = this;
@@ -69,9 +71,19 @@ class Product {
     menuContainer.appendChild(thisProduct.element);
   }
 
+  getElements() {
+    const thisProduct = this;
+
+    thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+    thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+    thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+    thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+    thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+  }
+
   initAccordion() {
     const thisProduct = this;
-    const clickableSpace = thisProduct.element.querySelector(select.menuProduct.clickable);
+    const clickableSpace = thisProduct.accordionTrigger;
     clickableSpace.addEventListener('click', function (event) {
       event.preventDefault();
       thisProduct.element.classList.add('active');
@@ -83,7 +95,45 @@ class Product {
       });
     });
   }
+  initOrderForm() {
+    const thisProduct = this;
+    console.log('initOrderForm');
+    thisProduct.form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      thisProduct.processOrder();
+    });
 
+    for (let input of thisProduct.formInputs) {
+      input.addEventListener('change', function () {
+        thisProduct.processOrder();
+      });
+    }
+
+    thisProduct.cartButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      thisProduct.processOrder();
+    });
+  }
+  processOrder() {
+    const thisProduct = this;
+    console.log('processOrder');
+    const formData = utils.serializeFormToObject(thisProduct.form);
+    console.log('formData', formData);
+    let price = thisProduct.data.price;
+    const params = thisProduct.data.params;
+    for (let param in params) {
+      for (let option in params[param].options) {
+        const currentOption = params[param].options[option];
+        if (formData[param] && formData[param].includes(option) && !currentOption.default) {
+          price += currentOption.price;
+        }
+        else if (currentOption.default == true && (!formData[param] || !formData[param].includes(option))) {
+          price -= currentOption.price;
+        }
+      }
+    }
+    thisProduct.priceElem.innerHTML = price;
+  }
 
 
 }
