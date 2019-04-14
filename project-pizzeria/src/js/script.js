@@ -79,6 +79,7 @@ class Product {
     thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
     thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
     thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
   }
 
   initAccordion() {
@@ -124,11 +125,24 @@ class Product {
     for (let param in params) {
       for (let option in params[param].options) {
         const currentOption = params[param].options[option];
-        if (formData[param] && formData[param].includes(option) && !currentOption.default) {
-          price += currentOption.price;
+        const imageSelector = '.' + param + '-' + option;
+        const image = thisProduct.element.querySelector(imageSelector);
+        const forBelowIfFunction = formData[param] && formData[param].includes(option);
+        if (forBelowIfFunction) {
+          if (image) {
+            image.classList.add(classNames.menuProduct.imageVisible);
+          }
+          if (!currentOption.default) {
+            price += currentOption.price;
+          }
         }
-        else if (currentOption.default == true && (!formData[param] || !formData[param].includes(option))) {
-          price -= currentOption.price;
+        else {
+          if (image) {
+            image.classList.remove(classNames.menuProduct.imageVisible);
+          }
+          if (currentOption.default == true) {
+            price -= currentOption.price;
+          }
         }
       }
     }
