@@ -340,6 +340,9 @@ class Cart {
       })
       .then(function (parsedResponse) {
         console.log('parsedResponse', parsedResponse);
+      })
+      .catch(function() {
+        alert('There has been a problem with sending your order. Please call us at: 666666666666');
       });
   }
 
